@@ -75,6 +75,13 @@ exports.testCmd = (rl,id) => {
 
 			rl.question(colorize(`${quiz.question}? `, 'red'),answer => {
 
+					answer = answer.replace(/á/gi,"a"); quiz.answer = quiz.answer.replace(/á/gi,"a");
+					answer = answer.replace(/é/gi,"e"); quiz.answer = quiz.answer.replace(/é/gi,"e");
+					answer = answer.replace(/í/gi,"i"); quiz.answer = quiz.answer.replace(/í/gi,"i");
+					answer = answer.replace(/ó/gi,"o"); quiz.answer = quiz.answer.replace(/ó/gi,"o");
+					answer = answer.replace(/ú/gi,"u"); quiz.answer = quiz.answer.replace(/ú/gi,"u");
+					answer = answer.replace(/ñ/gi,"n"); quiz.answer = quiz.answer.replace(/ñ/gi,"n");
+
 						if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 							log('Su respuesta es correcta.');
 							biglog(`CORRECTA`,'green');
@@ -165,6 +172,13 @@ exports.playCmd = rl => {
 		const quiz = model.getByIndex(id);
 
 		rl.question(colorize(`${quiz.question}? `, 'red'),answer => {
+
+					answer = answer.replace(/á/gi,"a"); quiz.answer = quiz.answer.replace(/á/gi,"a");
+					answer = answer.replace(/é/gi,"e"); quiz.answer = quiz.answer.replace(/é/gi,"e");
+					answer = answer.replace(/í/gi,"i"); quiz.answer = quiz.answer.replace(/í/gi,"i");
+					answer = answer.replace(/ó/gi,"o"); quiz.answer = quiz.answer.replace(/ó/gi,"o");
+					answer = answer.replace(/ú/gi,"u"); quiz.answer = quiz.answer.replace(/ú/gi,"u");
+					answer = answer.replace(/ñ/gi,"n"); quiz.answer = quiz.answer.replace(/ñ/gi,"n");
 
 					if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 						score++;
