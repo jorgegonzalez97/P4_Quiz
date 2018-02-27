@@ -68,6 +68,7 @@ exports.testCmd = (rl,id) => {
 	
 	if (typeof id=== "undefined") {
 		errorlog(`Falta el parámetro id.`);
+		rl.prompt();
 	} else {
 		try{
 
@@ -75,12 +76,6 @@ exports.testCmd = (rl,id) => {
 
 			rl.question(colorize(`${quiz.question}? `, 'red'),answer => {
 
-					answer = answer.replace(/á/gi,"a"); quiz.answer = quiz.answer.replace(/á/gi,"a");
-					answer = answer.replace(/é/gi,"e"); quiz.answer = quiz.answer.replace(/é/gi,"e");
-					answer = answer.replace(/í/gi,"i"); quiz.answer = quiz.answer.replace(/í/gi,"i");
-					answer = answer.replace(/ó/gi,"o"); quiz.answer = quiz.answer.replace(/ó/gi,"o");
-					answer = answer.replace(/ú/gi,"u"); quiz.answer = quiz.answer.replace(/ú/gi,"u");
-					answer = answer.replace(/ñ/gi,"n"); quiz.answer = quiz.answer.replace(/ñ/gi,"n");
 
 						if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 							log('Su respuesta es correcta.');
@@ -157,8 +152,8 @@ exports.playCmd = rl => {
 	});
 
 	const playOne = () => {
-	if (!indices.length){
-		log('No hay nada más que preguntar.');
+	if (indices.length===0){
+		log('No hay nada más que preguntar.', 'red');
 		log(`Fin del juego. Aciertos: ${score}`);
 		biglog(`${score}`,'magenta');
 		rl.prompt();
@@ -173,26 +168,20 @@ exports.playCmd = rl => {
 
 		rl.question(colorize(`${quiz.question}? `, 'red'),answer => {
 
-					answer = answer.replace(/á/gi,"a"); quiz.answer = quiz.answer.replace(/á/gi,"a");
-					answer = answer.replace(/é/gi,"e"); quiz.answer = quiz.answer.replace(/é/gi,"e");
-					answer = answer.replace(/í/gi,"i"); quiz.answer = quiz.answer.replace(/í/gi,"i");
-					answer = answer.replace(/ó/gi,"o"); quiz.answer = quiz.answer.replace(/ó/gi,"o");
-					answer = answer.replace(/ú/gi,"u"); quiz.answer = quiz.answer.replace(/ú/gi,"u");
-					answer = answer.replace(/ñ/gi,"n"); quiz.answer = quiz.answer.replace(/ñ/gi,"n");
 
 					if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 						score++;
-						log(`CORRECTO - Lleva ${score} aciertos.`);
+						log(`CORRECTO - Lleva ${score} aciertos.`, 'green');
 						playOne();
 
 					}else{
-						log('INCORRECTO.');
+						log('INCORRECTO.', 'red');
 						log(`Fin del juego. Aciertos: ${score}`);
 						biglog(`${score}`,'magenta');
-						rl.prompt();
+						
 					
 					}
-
+			rl.prompt();
 				});
 		}
 		
