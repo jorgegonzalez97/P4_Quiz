@@ -11,7 +11,7 @@ biglog('CORE green', 'green');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: colorize('quiz >','blue'),
+  prompt: colorize('quiz > ','blue'),
   completer: (line) =>{
 	  const completions = 'h help delete edit list test play credits q quit'.split(' ');
 	  const hits = completions.filter((c) => c.startsWith(line));

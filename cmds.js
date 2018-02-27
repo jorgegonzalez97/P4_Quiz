@@ -40,7 +40,7 @@ exports.addCmd = rl => {
 exports.listCmd = rl => {
 
 	model.getAll().forEach((quiz, id) =>{
-		log(`  [${colorize(id,'magenta')}]: ${quiz.question}`);
+		log(` [${colorize(id,'magenta')}]:  ${quiz.question}`);
 	})
 
 	rl.prompt();
