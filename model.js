@@ -55,7 +55,10 @@ const save = () => {
 
 
 
-exports.count = () => quizzes.lenght;
+exports.count = () => {
+	quizzes.length
+
+};
 
 exports.add = (question, answer) => {
 

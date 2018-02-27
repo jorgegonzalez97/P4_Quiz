@@ -141,36 +141,47 @@ exports.playCmd = rl => {
 	
 	let score = 0;
 
-	var toBeResolved = [];
+	var indices = [];
 
+	model.getAll().forEach((quiz, id) =>{
+		indices.push(id);
+	});
 
-	if (!toBeResolved.length){
+	const playOne = () => {
+	if (!indices.length){
 		log('No hay nada más que preguntar.');
 		log(`Fin del juego. Aciertos: ${score}`);
 		biglog(`${score}`,'magenta');
 		rl.prompt();
 	}else{
-		let id = Math.floor(Math.random()*toBeResolved.length);
-		array.splice(id,1);
 
-		const quiz = model.getByIndex(id);
+		let idr = Math.floor(Math.random()*indices.length);
+		indices.splice(idr,1);
+
+		const quiz = model.getByIndex(idr);
 
 		rl.question(colorize(`¿${quiz.question}? `, 'red'),answer => {
 
 					if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 						score++;
 						log(`CORRECTO - Lleva ${score} aciertos.`);
+						playOne();
+
 					}else{
 						log('INCORRECTO.');
 						log(`Fin del juego. Aciertos: ${score}`);
 						biglog(`${score}`,'magenta');
+						rl.prompt();
 					}
-					rl.prompt();
-				});
 
+				});
+		}
+		
 	}
 
+	
 
+	playOne();
 
 
 
