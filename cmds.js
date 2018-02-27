@@ -156,9 +156,11 @@ exports.playCmd = rl => {
 	}else{
 
 		let idr = Math.floor(Math.random()*indices.length);
+
+		let id = indices[idr];
 		indices.splice(idr,1);
 
-		const quiz = model.getByIndex(idr);
+		const quiz = model.getByIndex(id);
 
 		rl.question(colorize(`¿${quiz.question}? `, 'red'),answer => {
 
