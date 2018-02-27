@@ -191,7 +191,7 @@ exports.playCmd = rl => {
 
 exports.creditsCmd = rl => {
 	log('Autor de la práctica:');
-    log('Jorge Gonzalez Lopez','green');
+    log('JORGE GONZALEZ','green');
     rl.prompt();
 };
 
